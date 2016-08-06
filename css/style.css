@@ -7,7 +7,7 @@
 /* ///////// */
 
 body#landingPage {
-    /*background: no-repeat center center fixed;*/
+    background-repeat: no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -50,3 +50,28 @@ body#landingPage {
 #landingPage {
     text-align: center;
 }
+
+/* ///////// */
+
+
+/* CITY PAGE */
+
+
+/* ///////// */
+
+#cityTitle {
+    font-size: 6em;
+    color: #157A97;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+#cityBG {
+    background: url("../images/other/norwaybw.jpg")no-repeat center center fixed;
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+}
+
+

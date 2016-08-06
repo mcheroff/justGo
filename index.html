@@ -13,46 +13,20 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script>
-    // <!-- Activate cloaking device
-    var randnum = Math.random();
-    var inum = 5;
-    var rand1 = Math.round(randnum * (inum - 1)) + 1;
-    images = new Array
-    images[1] = "images/bg/1.jpg"
-    images[2] = "images/bg/2.jpg"
-    images[3] = "images/bg/3.jpg"
-    images[4] = "images/bg/4.jpg"
-    images[5] = "images/bg/5.jpg"
-    var image = images[rand1]
-        // Deactivate cloaking device -->
-    </script>
     <title>justGo</title>
 </head>
 
 <body id="landingPage">
     <!-- Content -->
-    <div id="wrap">
+    <div class="container">
         <h1 id="homePageTitle">justgo</h1>
         <p id="homePageText">Find a rental. Find a friend.</p>
         <a class="waves-effect waves-light btn-large logInBtn modal-trigger" href="#modal1"><i class="material-icons right">perm_identity</i>Log In</a>
     </div>
-
-    <script>
-    $(document).ready(function() {
-        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-        $('.modal-trigger').leanModal();
-    });
-    </script>
-    <!-- Background image rotation -->
-    <script language="JavaScript">
-    // <!-- Activate cloaking device
-    document.write('<body background="' + image + '" text="white">')
-        // Deactivate cloaking device -->
-    </script>
-    <!-- <script src="js/rand.bg.js"></script> -->
+   
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+    <script src="js/background.js"></script>
 </body>
 
 </html>
