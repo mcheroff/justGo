@@ -37,8 +37,7 @@ app.get('/', function(req, res, next) {
 
         console.log(body);
     })
-
-
+    res.render('index');
 });
 
 app.listen(PORT, function() {
