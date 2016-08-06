@@ -1,0 +1,48 @@
+/* ///////// */
+/* HOME PAGE */
+/* ///////// */
+
+body#landingPage {
+    /*background: no-repeat center center fixed;*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    ;
+}
+
+#homePageTitle {
+    font-size: 15em;
+    text-align: center;
+    margin-top: 15%;
+    color: white;
+    font-family: 'Anton', sans-serif;
+    letter-spacing: 6px;
+    z-index: 9990;
+}
+
+#homePageText {
+    text-align: center;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 3em;
+    margin-top: -2%;
+    z-index: 9990;
+}
+
+.logInBtn {
+    margin: 0 auto;
+    display: inline-block;
+    background-color: #F5A24E;
+    top: 50%;
+    z-index: 9990;
+}
+
+.btn:hover,
+.btn-large:hover {
+    background-color: #F2871B;
+}
+
+#landingPage {
+    text-align: center;
+}
