@@ -1,32 +1,34 @@
 {
   "name": "justgo",
   "version": "1.0.0",
-  "description": "ut coding bootcamp project 2",
+  "description": "Find a City, Find a Friend",
   "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "express-handlebars": "^3.0.0",
+    "method-override": "^2.3.6",
+    "mysql": "^2.11.1",
+    "path": "^0.12.7",
+    "sequelize": "^3.23.6"
+  },
+  "devDependencies": {},
+  "engines":
+{
+  "node": "6.2.2"
+},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jameshornung/justGo.git",
-  "author": "ben arteaga",
+    "url": "git+https://github.com/jameshornung/justGo.git"
+  },
+  "author": "The Go Team",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/bnjmnrtg/justGo/issues"
+    "url": "https://github.com/jameshornung/justGo/issues"
   },
-  "homepage": "https://github.com/bnjmnrtg/justGo#readme",
-  "dependencies": {
-    "body-parser": "^1.15.2",
-    "express": "^4.14.0",
-    "express-handlebars": "^3.0.0",
-    "homeaway-api": "git+ssh://git@github.wvrgroup.internal:PublicApi/nodeJS_sdk.git",
-    "mysql": "^2.11.1",
-    "request": "^2.74.0",
-    "sequelize": "^3.23.6"
-  },
-  "devDependencies": {},
-  "engines":{
-    "node": "6.2.2"
-  }
+  "homepage": "https://github.com/jameshornung/justGo#readme"
 }
