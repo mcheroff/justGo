@@ -22,7 +22,12 @@
     "express": "^4.14.0",
     "express-handlebars": "^3.0.0",
     "homeaway-api": "git+ssh://git@github.wvrgroup.internal:PublicApi/nodeJS_sdk.git",
+    "mysql": "^2.11.1",
     "request": "^2.74.0",
     "sequelize": "^3.23.6"
+  },
+  "devDependencies": {},
+  "engines":{
+    "node": "6.2.2"
   }
 }
