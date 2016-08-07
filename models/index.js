@@ -30,8 +30,6 @@ Object.keys(db).forEach(function(modelName) {
   }
 });
 
-app.use(express.static(path.join(__dirname, '/public')));
-
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
