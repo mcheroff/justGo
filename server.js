@@ -20,12 +20,11 @@ app.listen(PORT, function() {
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-// //these are for querying the API.  "options" grants authorization, options2 is an example of a request.  
-var options = {
+//Obtains Athorization for HomeAway API  
+var authorize = {
     method: 'POST',
     url: 'https://ws.homeaway.com/oauth/token',
     headers: {
-        'postman-token': '940e960b-01e8-9a90-b5ca-130cfe8d4c26',
         'cache-control': 'no-cache',
         authorization: 'Basic Y2QyZGQyM2MtYmUwMy00OTk4LTg4NWItYjg0ZDY4ODg4ZjEyOmU4ZjcyZjUzLTRlMTMtNDYyNy04NDQ4LTBhYjQzNDVlYWYyMw=='
     }
@@ -36,7 +35,7 @@ var options = {
 //===================================================================
 
 app.get('/', function(req, res, next) {
-    request(options, function(error, response, body) {
+    request(authorize, function(error, response, body) {
         if (error) throw new Error(error);
         // console.log(body);
     })
@@ -51,30 +50,45 @@ app.get('/form', function(req, res, body){
     res.render('formTest');
 });
 
-app.post('/formResponse', function(req, res) {
-  // res.send('You entered the city "' + req.body.city + '".');//This is printed on /formRequest
-  res.redirect('/form');
-  // console.log("this should be the entered city, ", req.body.city);//This is logged to the console
+app.get('/result', function(req, res, body){
+    res.render('results');
+})
 
-  //GET Request Parameters----------------------
-  var city = req.body.city;
-  var search = {
-    method: 'GET',
-    url: 'https://ws.homeaway.com/public/search',
-    qs: { minSleeps: '3', q: city, minNightlyPrice: '500' },
-    headers: {
-        'postman-token': '6c3a6488-22a3-b3df-3842-a7571a4fac34',
-        'cache-control': 'no-cache',
-        authorization: 'Bearer NTZlNjYzZGYtNTYxNS00NWViLWFjZTQtOWY0ZDVlMmMwZjIz'
-    }
+app.post('/formResponse', function(req, res) {
+    //GET Request Parameters------------------
+    var city = req.body.city;
+    var numBedrooms = req.body.numBedrooms;
+    var max = req.body.maxRent;
+    var min = req.body.minRent;
+
+    var search = {
+        method: 'GET',
+        url: 'https://ws.homeaway.com/public/search',
+        qs: { minBedrooms: numBedrooms, q: city, minNightlyPrice: min, maxNightlyPrice: max },
+        headers: {
+            'cache-control': 'no-cache',
+            authorization: 'Bearer NTZlNjYzZGYtNTYxNS00NWViLWFjZTQtOWY0ZDVlMmMwZjIz'
+        }
     };
-    //Request
+    //Request---------------------------------
+    // console.log(search);
     request(search, function(error, response, body){
         if (error) throw new Error(error);
-        console.log(body);
-    });
-    
-});
 
+        var results = JSON.parse(body);
+        var resultArray = [];
+
+        for(i=0; i<5; i++){
+            var resultObject = {
+                headline: results.entries[i].headline,
+                image: results.entries[i].thumbnail.uri,
+                listing: results.entries[i].listingUrl
+            }
+            resultArray.push(resultObject);
+        }
+
+        res.send(resultArray);
+    });
+});
 
 
