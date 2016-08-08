@@ -64,7 +64,7 @@ app.post('/formResponse', function(req, res) {
     var search = {
         method: 'GET',
         url: 'https://ws.homeaway.com/public/search',
-        qs: { minBedrooms: numBedrooms, q: city, minNightlyPrice: min, maxNightlyPrice: max },
+        qs: { minBedrooms: numBedrooms, q: city, minNightlyPrice: min, maxNightlyPrice: max, imageSize: "MEDIUM" },
         headers: {
             'cache-control': 'no-cache',
             authorization: 'Bearer NTZlNjYzZGYtNTYxNS00NWViLWFjZTQtOWY0ZDVlMmMwZjIz'
@@ -87,7 +87,27 @@ app.post('/formResponse', function(req, res) {
             resultArray.push(resultObject);
         }
 
-        res.send(resultArray);
+        var display = "<h2>" + resultArray[0].headline + "</h2>" + "<br>" +
+                    "<img class='home-photo' src=" + resultArray[0].image + ">" + "<br>" +
+                    "<a href='" + resultArray[0].listing + "'>" + "View Listing" + "</a>" +
+
+                    "<h2>" + resultArray[1].headline + "</h2>" + "<br>" +
+                    "<img class='home-photo' src=" + resultArray[1].image + ">" + "<br>" +
+                    "<a href='" + resultArray[1].listing + "'>" + "View Listing" + "</a>" +
+
+                    "<h2>" + resultArray[2].headline + "</h2>" + "<br>" +
+                    "<img class='home-photo' src=" + resultArray[2].image + ">" + "<br>" +
+                    "<a href='" + resultArray[2].listing + "'>" + "View Listing" + "</a>" +
+
+                    "<h2>" + resultArray[3].headline + "</h2>" + "<br>" +
+                    "<img class='home-photo' src=" + resultArray[3].image + ">" + "<br>" +
+                    "<a href='" + resultArray[3].listing + "'>" + "View Listing" + "</a>" +
+
+                    "<h2>" + resultArray[4].headline + "</h2>" + "<br>" +
+                    "<img class='home-photo' src=" + resultArray[4].image + ">" + "<br>" +
+                    "<a href='" + resultArray[4].listing + "'>" + "View Listing" + "</a>";
+
+        res.send(display);
     });
 });
 
