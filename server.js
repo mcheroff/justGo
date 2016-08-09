@@ -65,7 +65,12 @@ app.post('/formResponse', function(req, res) {
             var search = {
                 method: 'GET',
                 url: 'https://ws.homeaway.com/public/search',
-                qs: { minBedrooms: numBedrooms, q: city, minNightlyPrice: min, maxNightlyPrice: max, imageSize: "MEDIUM" },
+                qs: { minBedrooms: numBedrooms, 
+                    q: city, 
+                    minNightlyPrice: min, 
+                    maxNightlyPrice: max, 
+                    imageSize: "MEDIUM" 
+                },
                 headers: {
                     'cache-control': 'no-cache',
                     authorization: 'Bearer NTZlNjYzZGYtNTYxNS00NWViLWFjZTQtOWY0ZDVlMmMwZjIz'
