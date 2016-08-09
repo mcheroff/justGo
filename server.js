@@ -47,7 +47,7 @@ app.get('/city', function(req, res, body){
     });
 
 app.get('/form', function(req, res, body){
-    res.render('formTest');
+    res.render('form');
 });
 
 app.get('/result', function(req, res, body){
