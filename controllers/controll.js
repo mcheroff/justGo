@@ -44,7 +44,7 @@ router.get('/result', function(req, res, body) {
 
 
 
-router.post('/formResponse', function(req, res) {
+router.post('/listings', function(req, res) {
     //GET Request Parameters------------------
     console.log(req.body);
     //global parameters
