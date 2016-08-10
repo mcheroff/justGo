@@ -114,7 +114,7 @@ app.post('/formResponse', function(req, res) {
                     "<a class='result-link' href='" + resultArray[0].listing + "'>" + "View Listing" + "</a></div>";
             }
             else {
-                var display = "<div class='result-display'><h2 class='headline'>" + resultArray[0].headline + "</h2>" + "<br>" +
+                var display = "<html><head><link rel='stylesheet' type='text/css' href='/assets/css/style.css'></head><body><div class='result-display'><h2 class='headline'>" + resultArray[0].headline + "</h2>" + "<br>" +
                     "<img class='home-photo' src=" + resultArray[0].image + ">" + "<br>" +
                     "<p class='result-description'>" + resultArray[0].description + "</p><br>" +
                     "<a class='result-link' href='" + resultArray[0].listing + "'>" + "View Listing" + "</a></div>" +
@@ -137,9 +137,9 @@ app.post('/formResponse', function(req, res) {
                     "<div class='result-display'><h2 class='headline'>" + resultArray[4].headline + "</h2>" + "<br>" +
                     "<img class='home-photo' src=" + resultArray[4].image + ">" + "<br>" +
                     "<p class='result-description'>" + resultArray[4].description + "</p><br>" +
-                    "<a class='result-link' href='" + resultArray[4].listing + "'>" + "View Listing" + "</a></div>";
+                    "<a class='result-link' href='" + resultArray[4].listing + "'>" + "View Listing" + "</a></div></body></html>";
             }
-        };        
+        };      
         res.send(display);
     });    
 });

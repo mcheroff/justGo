@@ -481,3 +481,37 @@ a:hover {
     color: gray;
 }
 
+/* ///////// */
+
+
+/* RESULTS PAGE */
+
+
+/* ///////// */
+
+.result-display{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid black;
+}
+
+.headline{
+    text-align: center;
+}
+
+.home-photo{
+    margin-right: auto;
+    margin-left: auto;
+    border: 1px solid black;
+}
+
+.result-description{
+    padding: 10px;
+}
+
+.result-link{
+    text-align: center;
+    text-decoration: none;
+    color: gray;
+}
