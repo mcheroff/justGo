@@ -476,3 +476,8 @@ a:hover {
     vertical-align: top;
     font-size: 1.1em
 }
+
+.input-field{
+    color: gray;
+}
+

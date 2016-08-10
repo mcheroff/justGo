@@ -57,89 +57,93 @@ app.get('/result', function(req, res, body) {
 
 app.post('/formResponse', function(req, res) {
     //GET Request Parameters------------------
-    var city = req.body.city;
-    var numBedrooms = req.body.numBedrooms;
-    var max = req.body.maxRent;
-    var min = req.body.minRent;
+    // var city = req.body.city;
+    // var numBedrooms = req.body.numBedrooms;
+    // var max = req.body.maxRent;
+    // var min = req.body.minRent;
 
-    var search = {
-        method: 'GET',
-        url: 'https://ws.homeaway.com/public/search',
-        qs: { 
-            q: city,
-            minSleeps: numBedrooms, 
-            // availabilityStart: yyyy-MM-dd,
-            // availabilityEnd: yyy-MM-dd, 
-            // centerPointLongitude:,
-            // centerPointLatitude:,
-            // distanceInKm:,
-            maxNightlyPrice: max,
-            sort: "averageRating", 
-            imageSize: "MEDIUM" 
-        },
-        headers: {
-            'cache-control': 'no-cache',
-            authorization: 'Bearer NTZlNjYzZGYtNTYxNS00NWViLWFjZTQtOWY0ZDVlMmMwZjIz'
-        }
-    };
+    console.log(req.body.myActivity);
+    console.log(req.body.numOfPeople);
+    console.log(req.body.budget);
+
+    // var search = {
+    //     method: 'GET',
+    //     url: 'https://ws.homeaway.com/public/search',
+    //     qs: { 
+    //         q: city,
+    //         minSleeps: numBedrooms, 
+    //         // availabilityStart: yyyy-MM-dd,
+    //         // availabilityEnd: yyy-MM-dd, 
+    //         // centerPointLongitude:,
+    //         // centerPointLatitude:,
+    //         // distanceInKm:,
+    //         maxNightlyPrice: max,
+    //         sort: "averageRating", 
+    //         imageSize: "MEDIUM" 
+    //     },
+    //     headers: {
+    //         'cache-control': 'no-cache',
+    //         authorization: 'Bearer NTZlNjYzZGYtNTYxNS00NWViLWFjZTQtOWY0ZDVlMmMwZjIz'
+    //     }
+    // };
     //Request---------------------------------
     // console.log(search);
-    request(search, function(error, response, body) {
-        if (error) throw new Error(error);
+    // request(search, function(error, response, body) {
+    //     if (error) throw new Error(error);
 
-        var results = JSON.parse(body);
-        var resultArray = [];
+    //     var results = JSON.parse(body);
+    //     var resultArray = [];
 
-        var numOfResults = results.entries.length;
+    //     var numOfResults = results.entries.length;
 
-        if (numOfResults === 0) {
-            // alert("No Results Match Those Parameters.  Please search again.");
-            res.redirect('/form');
-        } 
-        else {
-            for (i = 0; i < numOfResults; i++) {
-                var resultObject = {
-                    headline: results.entries[i].headline,
-                    image: results.entries[i].thumbnail.uri,
-                    listing: results.entries[i].listingUrl,
-                    description: results.entries[i].description
-                }
-                resultArray.push(resultObject);
-            }
-            if(numOfResults < 5){
-                var display = "<div class='result-display'><h2 class='headline'>" + resultArray[0].headline + "</h2>" + "<br>" +
-                    "<img class='home-photo' src=" + resultArray[0].image + ">" + "<br>" +
-                    "<p class='result-description'>" + resultArray[0].description + "</p><br>" +
-                    "<a class='result-link' href='" + resultArray[0].listing + "'>" + "View Listing" + "</a></div>";
-            }
-            else {
-                var display = "<div class='result-display'><h2 class='headline'>" + resultArray[0].headline + "</h2>" + "<br>" +
-                    "<img class='home-photo' src=" + resultArray[0].image + ">" + "<br>" +
-                    "<p class='result-description'>" + resultArray[0].description + "</p><br>" +
-                    "<a class='result-link' href='" + resultArray[0].listing + "'>" + "View Listing" + "</a></div>" +
+    //     if (numOfResults === 0) {
+    //         // alert("No Results Match Those Parameters.  Please search again.");
+    //         res.redirect('/form');
+    //     } 
+    //     else {
+    //         for (i = 0; i < numOfResults; i++) {
+    //             var resultObject = {
+    //                 headline: results.entries[i].headline,
+    //                 image: results.entries[i].thumbnail.uri,
+    //                 listing: results.entries[i].listingUrl,
+    //                 description: results.entries[i].description
+    //             }
+    //             resultArray.push(resultObject);
+    //         }
+    //         if(numOfResults < 5){
+    //             var display = "<div class='result-display'><h2 class='headline'>" + resultArray[0].headline + "</h2>" + "<br>" +
+    //                 "<img class='home-photo' src=" + resultArray[0].image + ">" + "<br>" +
+    //                 "<p class='result-description'>" + resultArray[0].description + "</p><br>" +
+    //                 "<a class='result-link' href='" + resultArray[0].listing + "'>" + "View Listing" + "</a></div>";
+    //         }
+    //         else {
+    //             var display = "<div class='result-display'><h2 class='headline'>" + resultArray[0].headline + "</h2>" + "<br>" +
+    //                 "<img class='home-photo' src=" + resultArray[0].image + ">" + "<br>" +
+    //                 "<p class='result-description'>" + resultArray[0].description + "</p><br>" +
+    //                 "<a class='result-link' href='" + resultArray[0].listing + "'>" + "View Listing" + "</a></div>" +
 
-                   "<div class='result-display'><h2 class='headline'>" + resultArray[1].headline + "</h2>" + "<br>" +
-                    "<img class='home-photo' src=" + resultArray[1].image + ">" + "<br>" +
-                    "<p class='result-description'>" + resultArray[1].description + "</p><br>" +
-                    "<a class='result-link' href='" + resultArray[1].listing + "'>" + "View Listing" + "</a></div>" +
+    //                "<div class='result-display'><h2 class='headline'>" + resultArray[1].headline + "</h2>" + "<br>" +
+    //                 "<img class='home-photo' src=" + resultArray[1].image + ">" + "<br>" +
+    //                 "<p class='result-description'>" + resultArray[1].description + "</p><br>" +
+    //                 "<a class='result-link' href='" + resultArray[1].listing + "'>" + "View Listing" + "</a></div>" +
 
-                    "<div class='result-display'><h2 class='headline'>" + resultArray[2].headline + "</h2>" + "<br>" +
-                    "<img class='home-photo' src=" + resultArray[2].image + ">" + "<br>" +
-                    "<p class='result-description'>" + resultArray[2].description + "</p><br>" +
-                    "<a class='result-link' href='" + resultArray[2].listing + "'>" + "View Listing" + "</a></div>" +
+    //                 "<div class='result-display'><h2 class='headline'>" + resultArray[2].headline + "</h2>" + "<br>" +
+    //                 "<img class='home-photo' src=" + resultArray[2].image + ">" + "<br>" +
+    //                 "<p class='result-description'>" + resultArray[2].description + "</p><br>" +
+    //                 "<a class='result-link' href='" + resultArray[2].listing + "'>" + "View Listing" + "</a></div>" +
 
-                    "<div class='result-display'><h2 class='headline'>" + resultArray[3].headline + "</h2>" + "<br>" +
-                    "<img class='home-photo' src=" + resultArray[3].image + ">" + "<br>" +
-                    "<p class='result-description'>" + resultArray[3].description + "</p><br>" +
-                    "<a class='result-link' href='" + resultArray[3].listing + "'>" + "View Listing" + "</a></div>" +
+    //                 "<div class='result-display'><h2 class='headline'>" + resultArray[3].headline + "</h2>" + "<br>" +
+    //                 "<img class='home-photo' src=" + resultArray[3].image + ">" + "<br>" +
+    //                 "<p class='result-description'>" + resultArray[3].description + "</p><br>" +
+    //                 "<a class='result-link' href='" + resultArray[3].listing + "'>" + "View Listing" + "</a></div>" +
 
-                    "<div class='result-display'><h2 class='headline'>" + resultArray[4].headline + "</h2>" + "<br>" +
-                    "<img class='home-photo' src=" + resultArray[4].image + ">" + "<br>" +
-                    "<p class='result-description'>" + resultArray[4].description + "</p><br>" +
-                    "<a class='result-link' href='" + resultArray[4].listing + "'>" + "View Listing" + "</a></div>";
-            }
-        };        
-        res.send(display);
-    });    
+    //                 "<div class='result-display'><h2 class='headline'>" + resultArray[4].headline + "</h2>" + "<br>" +
+    //                 "<img class='home-photo' src=" + resultArray[4].image + ">" + "<br>" +
+    //                 "<p class='result-description'>" + resultArray[4].description + "</p><br>" +
+    //                 "<a class='result-link' href='" + resultArray[4].listing + "'>" + "View Listing" + "</a></div>";
+    //         }
+    //     };        
+    //     res.send(display);
+    // });    
 });
 

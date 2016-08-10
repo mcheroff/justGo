@@ -34,26 +34,26 @@
 <div class = "container">
 <h2>Tell us about your trip.</h2>
 	<div class = 'row'>
-		<form class = 'col s12' id = "formBG">
+		<form class = 'col s12' id = "formBG" action="/formResponse" method="post">
 		<h5>What are you looking to do while you're visiting {{ city }}?</h5>
 			<!-- <div class = 'row'> -->
 				<!-- <form action="#"> -->
 	   				<div class = "row">
 	   					<div class = 'col s4'>
 			   				<p>
-			     		 		<input type="checkbox" id="shoppingCB" />
+			     		 		<input type="checkbox" id="shoppingCB" name="myActivity" value="shopping"/>
 			      		 		<label for="shoppingCB">Shopping</label>
 			   				</p>
 			   			</div>
 			   			<div class = 'col s4'>
 			   				<p>
-			     		 		<input type="checkbox" id="sightseeingCB" />
+			     		 		<input type="checkbox" id="sightseeingCB" name="myActivity" value="tourist"/>
 			      		 		<label for="sightseeingCB">Sightseeing</label>
 			   				</p>
 			   			</div>
 			   			<div class = 'col s4'>
 			   				<p>
-			     		 		<input type="checkbox" id="musicCB" />
+			     		 		<input type="checkbox" id="musicCB" name="myActivity" value="arts"/>
 			      		 		<label for="musicCB">Music &amp; The Arts</label>
 			   				</p>
 			   			</div>
@@ -62,19 +62,19 @@
 		   			<div class = 'row'>
 		   				<div class = 'col s4'>
 			   				<p>
-			     		 		<input type="checkbox" id="sportsCB" />
+			     		 		<input type="checkbox" id="sportsCB" name="myActivity" value="sport"/>
 			      		 		<label for="sportsCB">Sporting Event</label>
 			   				</p>
 			   			</div>
 			   			<div class = 'col s4'>
 			   				<p>
-			     		 		<input type="checkbox" id="businessCB" />
+			     		 		<input type="checkbox" id="businessCB" name="myActivity" value="work"/>
 			      		 		<label for="businessCB">Business</label>
 			   				</p>
 			   			</div>
 			   			<div class = 'col s4'>
 			   				<p>
-			     		 		<input type="checkbox" id="foodCB" />
+			     		 		<input type="checkbox" id="foodCB" name="myActivity" value="food"/>
 			      		 		<label for="foodCB">Food</label>
 			   				</p>
 			   				</div>
@@ -82,19 +82,19 @@
 		   			<div class = 'row'>
 		   				<div class = 'col s4'>
 			   				<p>
-			     		 		<input type="checkbox" id="socialCB" />
+			     		 		<input type="checkbox" id="socialCB" name="myActivity" value="social"/>
 			      		 		<label for="socialCB">Social</label>
 			   				</p>
 			   			</div>
 			   			<div class = 'col s4'>
 			   				<p>
-			     		 		<input type="checkbox" id="partyCB" />
+			     		 		<input type="checkbox" id="partyCB" name="myActivity" value="party"/>
 			      		 		<label for="partyCB">Night Life</label>
 			   				</p>
 			   			</div>
 			   			<div class = 'col s4'>
 			   				<p>
-			     		 		<input type="checkbox" id="otherCB" />
+			     		 		<input type="checkbox" id="otherCB" name="myActivity" value="culture"/>
 			      		 		<label for="otherCB">Other cultural event</label>
 			   				</p>
 			   				</div>
@@ -103,7 +103,7 @@
 		   	<div class = 'row'>
 		   		<div class = 'col s6'>
 			   		<h5>How many people are traveling?</h5>
-			   		<div class="input-field">
+			   		<div class="input-field" name="numOfPeople">
 	    				<select>
 	      					<option value="" disabled selected>Choose your option</option>
 						    <option value="1">1</option>
@@ -121,13 +121,13 @@
 		   		</div>
 		   		<div class = 'col s6'>
 		   			<h5>What's your budget?</h5>
-		   			<div class ='input-field'>
+		   			<div class ='input-field' name="budget">
 		   				<select>
 		   					<option value="">Choose your option</option>
-						    <option value="1">Below $300</option>
-						    <option value="2">$300-$1000</option>
-						    <option value="3">$1000-$3000</option>
-						    <option value="4">$3000+</option>
+						    <option value="300">Below $300</option>
+						    <option value="1000">$300-$1000</option>
+						    <option value="3000">$1000-$3000</option>
+						    <option value="10000">$3000+</option>
 		   				</select>
 		   			</div>
 		   		</div>
@@ -142,6 +142,7 @@
 		   		</div>
 		   		
 		   	</div>
+		   	<button id="submit-button" type="submit">Submit</button>
 		</form>
 	</div>
 </div>
