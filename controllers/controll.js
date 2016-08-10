@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var router = express.Router();
 var request = require('request');
+var selection =require('../public/assets/js/cityPicker.js');
 
 //Obtains Athorization for HomeAway API  
 var authorize = {
@@ -16,6 +17,7 @@ var authorize = {
 
 //global variable to hold selected city
 var city;
+console.log(city, ' as a global variable in controll.js');
 
 //===================================================================
 
@@ -40,10 +42,7 @@ router.get('/result', function(req, res, body) {
     res.render('results');
 })
 
-//Identify Selected City
-// getElementById('nyc').on('click', function(){
-//     city = "New York";
-// });
+
 
 router.post('/formResponse', function(req, res) {
     //GET Request Parameters------------------
@@ -52,6 +51,8 @@ router.post('/formResponse', function(req, res) {
     var sleeps = req.body.numOfPeople;
     var max = req.body.budget;
 
+
+    console.log(city, ' city in post function on controll.js');
     //city specific parameters
     var longitude;
     var latitude;
