@@ -161,8 +161,9 @@ router.post('/listings', function(req, res) {
     console.log(req.body);
     console.log('in listings');
     // global parameters
-    var sleeps = req.body.sleeps;
-    var max = req.body.max;
+    var sleeps = req.body.numOfPeople;
+    var max = req.body.budget;
+    var city = req.body.city;
 
 
     //city specific parameters
@@ -181,7 +182,7 @@ router.post('/listings', function(req, res) {
         method: 'GET',
         url: 'https://ws.homeaway.com/public/search',
         qs: { 
-            // q: city,
+            q: city,
             minSleeps: sleeps, 
             // availabilityStart: yyyy-MM-dd,
             // availabilityEnd: yyy-MM-dd, 
@@ -207,10 +208,11 @@ router.post('/listings', function(req, res) {
         // console.log(results);
 
         var numOfResults = results.entries.length;
+        console.log('# results = ', numOfResults)
 
         if (numOfResults === 0) {
             // alert("No Results Match Those Parameters.  Please search again.");
-            res.redirect('/form');
+            // res.redirect('/form');
         } 
         else {
             for (i = 0; i < numOfResults; i++) {
@@ -254,11 +256,10 @@ router.post('/listings', function(req, res) {
                     "<p class='result-description'>" + resultArray[4].description + "</p><br>" +
                     "<a class='result-link' href='" + resultArray[4].listing + "'>" + "View Listing" + "</a></div></body></html>";
             }
-            console.log(display);
-             res.send(display);
         };      
-       
+       res.send(display);
     });    
 });
+
 
 module.exports = router;

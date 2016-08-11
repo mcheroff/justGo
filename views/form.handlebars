@@ -4,7 +4,7 @@
 <h2 id="formTitle">tell us about your trip!</h2>
 </div>
 	<div class = 'row'>
-		<form class = 'col s12' id = "formBG">
+		<form class = 'col s12' id = "formBG" action='/listings' method='post'>
 		<h5>What are you looking to do while you're visiting {{ city }}?</h5>
 			<!-- <div class = 'row'> -->
 				<!-- <form action="#"> -->
@@ -118,22 +118,25 @@
 		   		<div class = 'col s5'>
 		   			<h5>Other questions:</h5>
 		   				<p>
-			     		 	<input type="checkbox" id="petsCB" name="myActivity" value="pets"/>
+			     		 	<input type="checkbox" id="petsCB" name="options" value= "pets"/>
 			      		 	<label for="petsCB">Pets?</label>
 			   			</p>
 			   			<p>
-			     		 	<input type="checkbox" id="childrenCB" name="myActivity" value="children"/>
+			     		 	<input type="checkbox" id="childrenCB" name="options" value="children"/>
 			      		 	<label for="childrenCB">Children?</label>
 			   			</p>
 			   			<p>
-			     		 	<input type="checkbox" id="smokingCB" name="myActivity" value="smoking"/>
+			     		 	<input type="checkbox" id="smokingCB" name="options" value="smoking"/>
 			      		 	<label for="smokingCB">Smoking?</label>
 			   			</p>
 			   			<p>
-			     		 	<input type="checkbox" id="wheelchairCB" name="myActivity" value="wheelchair"/>
+			     		 	<input type="checkbox" id="wheelchairCB" name="options" value="wheelchair"/>
 			      		 	<label for="wheelchairCB">Wheelchair Accessible?</label>
 			   			</p>
 		   		</div>
+		   	</div>
+		   	<div>
+		   		<input type="hidden" name="city" value={{city}}/>
 		   	</div>
 		   	<div class = "row" style="text-align:center">
 		   		<button class="btn waves-effect waves-light" id="formSubmit" type="submit" name="action">Submit
@@ -152,30 +155,32 @@
 </script>
 <!-- For Pick A Date -->
 <script>
+var city = localStorage.getItem('city');
 
-$('#submit-button').click(function(event){
-	var city = localStorage.getItem('city');
-	var sleeps = $('#numOfPeople').val();
-	var max = $('#budget').val();
-	var myActivity = $(':checkbox:checked').val();
-	console.log(city, sleeps, max, myActivity);
-	var start;
-	var end;
+// $('#formSubmit').click(function(event){
+// 	var city = localStorage.getItem('city');
+// 	var sleeps = $('#numOfPeople').val();
+// 	var max = $('#budget').val();
+// 	var myActivity = $(':checkbox:checked').val();
+// 	console.log(city, sleeps, max, myActivity);
+// 	var start;
+// 	var end;
 
-	$.post('/listings',
-		{
-			city: city,
-			sleeps: sleeps,
-			max: max,
-			activity: myActivity
-		}, 
-		function(res){
-			console.log('successfully posted');
-			window.location.href ="/listings"
-		});
+// 	$.post('/listings',
+// 		{
+// 			city: city,
+// 			sleeps: sleeps,
+// 			max: max,
+// 			activity: myActivity
+// 		}, 
+// 		function(res){
+// 			console.log('successfully posted');
+// 		});
 
-	return false;
-});
+// 	window.location.href ="/listings"
+
+// 	return false;
+// });
 
 
 
