@@ -18,7 +18,6 @@ var authorize = {
 //global variable to hold selected city
 var city;
 
-
 //===================================================================
 
 router.get('/', function(req, res, next) {
@@ -122,7 +121,7 @@ router.post('/listings', function(req, res) {
         }
     };
     //Send Request
-    // console.log('search = ', search);
+    console.log('search = ', search);
     request(search, function(error, response, body) {
         if (error) throw new Error(error);
 
@@ -180,6 +179,5 @@ router.post('/listings', function(req, res) {
        res.send(display);
     });    
 });
-
 
 module.exports = router;
