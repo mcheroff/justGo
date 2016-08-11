@@ -5,7 +5,7 @@
 </div>
 	<div class = 'row'>
 		<form class = 'col s12' id = "formBG" action='/listings' method='post'>
-		<h5>What are you looking to do while you're visiting {{ city }}?</h5>
+		<h5>What are you looking to do while you're visiting <span id=city-name>''</span>?</h5>
 			<!-- <div class = 'row'> -->
 				<!-- <form action="#"> -->
 	   				<div class = "row">
@@ -136,7 +136,7 @@
 		   		</div>
 		   	</div>
 		   	<div>
-		   		<input type="hidden" name="city" value={{city}}/>
+		   		<input type="hidden" id="city-input" name="city" value="paris"/>
 		   	</div>
 		   	<div class = "row" style="text-align:center">
 		   		<button class="btn waves-effect waves-light" id="formSubmit" type="submit" name="action">Submit
@@ -156,31 +156,12 @@
 <!-- For Pick A Date -->
 <script>
 var city = localStorage.getItem('city');
+console.log('city selected = ', city);
 
-// $('#formSubmit').click(function(event){
-// 	var city = localStorage.getItem('city');
-// 	var sleeps = $('#numOfPeople').val();
-// 	var max = $('#budget').val();
-// 	var myActivity = $(':checkbox:checked').val();
-// 	console.log(city, sleeps, max, myActivity);
-// 	var start;
-// 	var end;
+$('#city-input').val(city);
+$('#city-name').html(city);
 
-// 	$.post('/listings',
-// 		{
-// 			city: city,
-// 			sleeps: sleeps,
-// 			max: max,
-// 			activity: myActivity
-// 		}, 
-// 		function(res){
-// 			console.log('successfully posted');
-// 		});
 
-// 	window.location.href ="/listings"
-
-// 	return false;
-// });
 
 
 
