@@ -56,28 +56,42 @@ router.post('/listings', function(req, res) {
     console.log(req.body);
    
     //PARAMETERS===================================================
+
     //For ALL Searches
     var sleeps = req.body.numOfPeople;
     var max = req.body.budget;
+    var min;
     var city = req.body.city;
     var start;
     var end;
+
+    if(max === '300'){
+        min = '0';
+    }
+    else if(max === '1000'){
+        min = '300';
+    }
+    else if(max === '3000'){
+        min = '1000';
+    }
+    else{
+        min = '3000';
+    }
 
     //City Specific
     var longitude;
     var latitude;
 
-    //==============================================================
     var activity = req.body.myActivity;
     console.log(activity);
+
     //New York
-    // if(city === 'New York'){
-    //     console.log('city identified, new york');
-    //     if(req.body.myActivity === 'food'){
-    //         latitude = '40.674857';
-    //         longitude = '-73.976870';
-    //     }
-    // }
+    if(city === 'New York'){
+        if(activity === 'food' || activity === 'shopping' || activity === "tourist" || activity === "arts" || activity === 'sport' || activity === 'work' || activity === 'food' || activity === 'social' || activity === 'party' || activity === 'culture'){
+            latitude = '40.674857';
+            longitude = '-73.976870';
+        }
+    }
     
     //Paris
 
@@ -90,13 +104,14 @@ router.post('/listings', function(req, res) {
         method: 'GET',
         url: 'https://ws.homeaway.com/public/search',
         qs: { 
-            q: city,
+            // q: city,
             minSleeps: sleeps, 
             // availabilityStart: yyyy-MM-dd,
             // availabilityEnd: yyy-MM-dd, 
-            // centerPointLongitude: longitude,
-            // centerPointLatitude: latitude,
-            // distanceInKm: 2,
+            centerPointLongitude: longitude,
+            centerPointLatitude: latitude,
+            distanceInKm: 2,
+            minNightlyPrice: min,
             maxNightlyPrice: max,
             sort: "averageRating", 
             imageSize: "MEDIUM" 
@@ -117,8 +132,7 @@ router.post('/listings', function(req, res) {
         var numOfResults = results.entries.length;
         // console.log('# results = ', numOfResults)
         if (numOfResults === 0) {
-            alert("No Results Match Those Parameters.  Please search again.");
-            res.redirect('/form');
+            res.redirect('/city');
         } 
         else {
             for (i = 0; i < numOfResults; i++) {
