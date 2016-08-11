@@ -17,7 +17,7 @@ var authorize = {
 
 //global variable to hold selected city
 var city;
-console.log(city, ' as a global variable in controll.js');
+
 
 //===================================================================
 
@@ -34,7 +34,16 @@ router.get('/city', function(req, res, body) {
 });
 
 
-router.get('/form', function(req, res, body) {
+router.get('/NYC', function(req, res, body) {
+    console.log(req.params);
+    res.render('form');
+});
+
+router.get('/Paris', function(req, res, body) {
+    res.render('form');
+});
+
+router.get('/London', function(req, res, body) {
     res.render('form');
 });
 
@@ -42,17 +51,120 @@ router.get('/result', function(req, res, body) {
     res.render('results');
 })
 
+// router.get('/listings', function(req, res, body){
+//     console.log(req.body);
+//     console.log('in get listings');
+//     //global parameters
+//     var sleeps = req.body.sleeps;
+//     var max = req.body.max;
+
+
+//     //city specific parameters
+//     var longitude;
+//     var latitude;
+//     // if(city === 'New York'){
+//     //     console.log('city identified, new york');
+//     //     if(req.body.myActivity === 'food'){
+//     //         latitude = '40.674857';
+//     //         longitude = '-73.976870';
+//     //     }
+//     // }
+    
+
+//     var search = {
+//         method: 'GET',
+//         url: 'https://ws.homeaway.com/public/search',
+//         qs: { 
+//             // q: city,
+//             minSleeps: sleeps, 
+//             // availabilityStart: yyyy-MM-dd,
+//             // availabilityEnd: yyy-MM-dd, 
+//             // centerPointLongitude: longitude,
+//             // centerPointLatitude: latitude,
+//             // distanceInKm: 2,
+//             maxNightlyPrice: max,
+//             sort: "averageRating", 
+//             imageSize: "MEDIUM" 
+//         },
+//         headers: {
+//             'cache-control': 'no-cache',
+//             authorization: 'Bearer NTZlNjYzZGYtNTYxNS00NWViLWFjZTQtOWY0ZDVlMmMwZjIz'
+//         }
+//     };
+//     // Request---------------------------------
+//     console.log(search);
+//     request(search, function(error, response, body) {
+//         if (error) throw new Error(error);
+
+//         var results = JSON.parse(body);
+//         var resultArray = [];
+
+//         var numOfResults = results.entries.length;
+
+//         if (numOfResults === 0) {
+//             // alert("No Results Match Those Parameters.  Please search again.");
+//             res.redirect('/form');
+//         } 
+//         else {
+//             for (i = 0; i < numOfResults; i++) {
+//                 var resultObject = {
+//                     headline: results.entries[i].headline,
+//                     image: results.entries[i].thumbnail.uri,
+//                     listing: results.entries[i].listingUrl,
+//                     description: results.entries[i].description
+//                 }
+//                 resultArray.push(resultObject);
+//             }
+//             if(numOfResults < 5){
+//                 var display = "<div class='result-display'><h2 class='headline'>" + resultArray[0].headline + "</h2>" + "<br>" +
+//                     "<img class='home-photo' src=" + resultArray[0].image + ">" + "<br>" +
+//                     "<p class='result-description'>" + resultArray[0].description + "</p><br>" +
+//                     "<a class='result-link' href='" + resultArray[0].listing + "'>" + "View Listing" + "</a></div>";
+//             }
+//             else {
+//                 var display = "<html><head><link rel='stylesheet' type='text/css' href='/assets/css/style.css'></head><body><div class='result-display'><h2 class='headline'>" + resultArray[0].headline + "</h2>" + "<br>" +
+//                     "<img class='home-photo' src=" + resultArray[0].image + ">" + "<br>" +
+//                     "<p class='result-description'>" + resultArray[0].description + "</p><br>" +
+//                     "<a class='result-link' href='" + resultArray[0].listing + "'>" + "View Listing" + "</a></div>" +
+
+//                    "<div class='result-display'><h2 class='headline'>" + resultArray[1].headline + "</h2>" + "<br>" +
+//                     "<img class='home-photo' src=" + resultArray[1].image + ">" + "<br>" +
+//                     "<p class='result-description'>" + resultArray[1].description + "</p><br>" +
+//                     "<a class='result-link' href='" + resultArray[1].listing + "'>" + "View Listing" + "</a></div>" +
+
+//                     "<div class='result-display'><h2 class='headline'>" + resultArray[2].headline + "</h2>" + "<br>" +
+//                     "<img class='home-photo' src=" + resultArray[2].image + ">" + "<br>" +
+//                     "<p class='result-description'>" + resultArray[2].description + "</p><br>" +
+//                     "<a class='result-link' href='" + resultArray[2].listing + "'>" + "View Listing" + "</a></div>" +
+
+//                     "<div class='result-display'><h2 class='headline'>" + resultArray[3].headline + "</h2>" + "<br>" +
+//                     "<img class='home-photo' src=" + resultArray[3].image + ">" + "<br>" +
+//                     "<p class='result-description'>" + resultArray[3].description + "</p><br>" +
+//                     "<a class='result-link' href='" + resultArray[3].listing + "'>" + "View Listing" + "</a></div>" +
+
+//                     "<div class='result-display'><h2 class='headline'>" + resultArray[4].headline + "</h2>" + "<br>" +
+//                     "<img class='home-photo' src=" + resultArray[4].image + ">" + "<br>" +
+//                     "<p class='result-description'>" + resultArray[4].description + "</p><br>" +
+//                     "<a class='result-link' href='" + resultArray[4].listing + "'>" + "View Listing" + "</a></div></body></html>";
+//             }
+//         };      
+//         res.send(display);
+//     });    
+// });
+
+
+
 
 
 router.post('/listings', function(req, res) {
     //GET Request Parameters------------------
     console.log(req.body);
-    //global parameters
-    var sleeps = req.body.numOfPeople;
-    var max = req.body.budget;
+    console.log('in listings');
+    // global parameters
+    var sleeps = req.body.sleeps;
+    var max = req.body.max;
 
 
-    console.log(city, ' city in post function on controll.js');
     //city specific parameters
     var longitude;
     var latitude;
@@ -86,12 +198,13 @@ router.post('/listings', function(req, res) {
         }
     };
     // Request---------------------------------
-    // console.log(search);
+    console.log('search = ', search);
     request(search, function(error, response, body) {
         if (error) throw new Error(error);
 
         var results = JSON.parse(body);
         var resultArray = [];
+        // console.log(results);
 
         var numOfResults = results.entries.length;
 
@@ -141,8 +254,10 @@ router.post('/listings', function(req, res) {
                     "<p class='result-description'>" + resultArray[4].description + "</p><br>" +
                     "<a class='result-link' href='" + resultArray[4].listing + "'>" + "View Listing" + "</a></div></body></html>";
             }
+            console.log(display);
+             res.send(display);
         };      
-        res.send(display);
+       
     });    
 });
 

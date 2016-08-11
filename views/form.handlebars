@@ -2,26 +2,26 @@
 <div class = "container">
 <h2>Tell us about your trip.</h2>
 	<div class = 'row'>
-		<form class = 'col s12' id = "formBG" action="/listings" method="post">
+		<form class = 'col s12' id = "formBG">
 		<h5>What are you looking to do while you're visiting {{ city }}?</h5>
 			<!-- <div class = 'row'> -->
 				<!-- <form action="#"> -->
 	   				<div class = "row">
 	   					<div class = 'col s4'>
 			   				<p>
-			     		 		<input type="checkbox" id="shoppingCB" name="myActivity" value="shopping"/>
+			     		 		<input type="checkbox" id="shoppingCB" name="myActivity" class="myActivity" value="shopping"/>
 			      		 		<label for="shoppingCB">Shopping</label>
 			   				</p>
 			   			</div>
 			   			<div class = 'col s4'>
 			   				<p>
-			     		 		<input type="checkbox" id="sightseeingCB" name="myActivity" value="tourist"/>
+			     		 		<input type="checkbox" id="sightseeingCB" name="myActivity" class="myActivity" value="tourist"/>
 			      		 		<label for="sightseeingCB">Sightseeing</label>
 			   				</p>
 			   			</div>
 			   			<div class = 'col s4'>
 			   				<p>
-			     		 		<input type="checkbox" id="musicCB" name="myActivity" value="arts"/>
+			     		 		<input type="checkbox" id="musicCB" name="myActivity" class="myActivity" value="arts"/>
 			      		 		<label for="musicCB">Music &amp; The Arts</label>
 			   				</p>
 			   			</div>
@@ -30,19 +30,19 @@
 		   			<div class = 'row'>
 		   				<div class = 'col s4'>
 			   				<p>
-			     		 		<input type="checkbox" id="sportsCB" name="myActivity" value="sport"/>
+			     		 		<input type="checkbox" id="sportsCB" name="myActivity" class="myActivity" value="sport"/>
 			      		 		<label for="sportsCB">Sporting Event</label>
 			   				</p>
 			   			</div>
 			   			<div class = 'col s4'>
 			   				<p>
-			     		 		<input type="checkbox" id="businessCB" name="myActivity" value="work"/>
+			     		 		<input type="checkbox" id="businessCB" name="myActivity" class="myActivity" value="work"/>
 			      		 		<label for="businessCB">Business</label>
 			   				</p>
 			   			</div>
 			   			<div class = 'col s4'>
 			   				<p>
-			     		 		<input type="checkbox" id="foodCB" name="myActivity" value="food"/>
+			     		 		<input type="checkbox" id="foodCB" name="myActivity" class="myActivity" value="food"/>
 			      		 		<label for="foodCB">Food</label>
 			   				</p>
 			   				</div>
@@ -50,19 +50,19 @@
 		   			<div class = 'row'>
 		   				<div class = 'col s4'>
 			   				<p>
-			     		 		<input type="checkbox" id="socialCB" name="myActivity" value="social"/>
+			     		 		<input type="checkbox" id="socialCB" name="myActivity" class="myActivity" value="social"/>
 			      		 		<label for="socialCB">Social</label>
 			   				</p>
 			   			</div>
 			   			<div class = 'col s4'>
 			   				<p>
-			     		 		<input type="checkbox" id="partyCB" name="myActivity" value="party"/>
+			     		 		<input type="checkbox" id="partyCB" name="myActivity" class="myActivity" value="party"/>
 			      		 		<label for="partyCB">Night Life</label>
 			   				</p>
 			   			</div>
 			   			<div class = 'col s4'>
 			   				<p>
-			     		 		<input type="checkbox" id="otherCB" name="myActivity" value="culture"/>
+			     		 		<input type="checkbox" id="otherCB" name="myActivity" class="myActivity" value="culture"/>
 			      		 		<label for="otherCB">Other cultural event</label>
 			   				</p>
 			   				</div>
@@ -72,7 +72,7 @@
 		   		<div class = 'col s6'>
 			   		<h5>How many people are traveling?</h5>
 			   		<div class="input-field">
-	    				<select name="numOfPeople">
+	    				<select name="numOfPeople" id="numOfPeople">
 	      					<option value="" disabled selected>Choose your option</option>
 						    <option value="1">1</option>
 						    <option value="2">2</option>
@@ -90,7 +90,7 @@
 		   		<div class = 'col s6'>
 		   			<h5>What's your budget?</h5>
 		   			<div class ='input-field'>
-		   				<select name="budget">
+		   				<select name="budget" id="budget">
 		   					<option value="">Choose your option</option>
 						    <option value="300">Below $300</option>
 						    <option value="1000">$300-$1000</option>
@@ -108,7 +108,6 @@
 		   		<div class = 'col s6'>
 		   			
 		   		</div>
-		   		
 		   	</div>
 		   	<button id="submit-button" type="submit">Submit</button>
 		</form>
@@ -123,6 +122,33 @@
 </script>
 <!-- For Pick A Date -->
 <script>
+
+$('#submit-button').click(function(event){
+	var city = localStorage.getItem('city');
+	var sleeps = $('#numOfPeople').val();
+	var max = $('#budget').val();
+	var myActivity = $(':checkbox:checked').val();
+	console.log(city, sleeps, max, myActivity);
+	var start;
+	var end;
+
+	$.post('/listings',
+		{
+			city: city,
+			sleeps: sleeps,
+			max: max,
+			activity: myActivity
+		}, 
+		function(res){
+			console.log('successfully posted');
+			window.location.href ="/listings"
+		});
+
+	return false;
+});
+
+
+
 $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
     selectYears: 15 // Creates a dropdown of 15 years to control year

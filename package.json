@@ -10,13 +10,13 @@
     "method-override": "^2.3.6",
     "mysql": "^2.11.1",
     "path": "^0.12.7",
+    "request": "^2.74.0",
     "sequelize": "^3.23.6"
   },
   "devDependencies": {},
-  "engines":
-{
-  "node": "6.2.2"
-},
+  "engines": {
+    "node": "6.2.2"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
