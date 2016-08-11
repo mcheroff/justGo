@@ -1,6 +1,8 @@
 
 <div class = "container">
-<h2>Tell us about your trip.</h2>
+<div class="row" style="text-align:center">
+<h2 id="formTitle">tell us about your trip!</h2>
+</div>
 	<div class = 'row'>
 		<form class = 'col s12' id = "formBG" action="/listings" method="post">
 		<h5>What are you looking to do while you're visiting {{ city }}?</h5>
@@ -69,7 +71,7 @@
 		   			</div>
 		   	<br>	
 		   	<div class = 'row'>
-		   		<div class = 'col s6'>
+		   		<div class = 'col s5'>
 			   		<h5>How many people are traveling?</h5>
 			   		<div class="input-field">
 	    				<select name="numOfPeople">
@@ -87,7 +89,9 @@
 	    				</select>
 	 				</div>	
 		   		</div>
-		   		<div class = 'col s6'>
+		   		<div class="col s2">
+		   		</div>
+		   		<div class = 'col s5'>
 		   			<h5>What's your budget?</h5>
 		   			<div class ='input-field'>
 		   				<select name="budget">
@@ -102,15 +106,41 @@
 		   	</div>
 		   	<br>
 		   	<div class = 'row'>
-		   		<div class = 'col s6'>
-		   			<input type="date" class="datepicker">
+		   		<div class = 'col s5'>
+		   			<h5>What are the dates of your trip?</h5>
+		   			<label for="fromInput">From:</label>
+		   			<input type="date" id = "fromInput" class="datepicker">
+		   			<label for="toInput">To:</label>
+		   			<input type="date" id = "toInput" class="datepicker">
 		   		</div>
-		   		<div class = 'col s6'>
-		   			
+		   		<div class="col s2">
+		   		</div>
+		   		<div class = 'col s5'>
+		   			<h5>Other questions:</h5>
+		   				<p>
+			     		 	<input type="checkbox" id="petsCB" name="myActivity" value="pets"/>
+			      		 	<label for="petsCB">Pets?</label>
+			   			</p>
+			   			<p>
+			     		 	<input type="checkbox" id="childrenCB" name="myActivity" value="children"/>
+			      		 	<label for="childrenCB">Children?</label>
+			   			</p>
+			   			<p>
+			     		 	<input type="checkbox" id="smokingCB" name="myActivity" value="smoking"/>
+			      		 	<label for="smokingCB">Smoking?</label>
+			   			</p>
+			   			<p>
+			     		 	<input type="checkbox" id="wheelchairCB" name="myActivity" value="wheelchair"/>
+			      		 	<label for="wheelchairCB">Wheelchair Accessible?</label>
+			   			</p>
 		   		</div>
 		   		
 		   	</div>
-		   	<button id="submit-button" type="submit">Submit</button>
+		   	<div class = "row" style="text-align:center">
+		   		<button class="btn waves-effect waves-light" id="formSubmit" type="submit" name="action">Submit
+    				<i class="material-icons right">send</i>
+  				</button>
+  			</div>
 		</form>
 	</div>
 </div>
