@@ -46,11 +46,6 @@ router.get('/London', function(req, res, body) {
     res.render('form');
 });
 
-router.get('/result', function(req, res, body) {
-    res.render('results');
-})
-
-
 router.post('/listings', function(req, res) {
     console.log(req.body);
    
@@ -64,6 +59,7 @@ router.post('/listings', function(req, res) {
     var start;
     var end;
 
+    //Determine minimum price point
     if(max === '300'){
         min = '0';
     }
@@ -86,9 +82,24 @@ router.post('/listings', function(req, res) {
 
     //New York
     if(city === 'New York'){
-        if(activity === 'food' || activity === 'shopping' || activity === "tourist" || activity === "arts" || activity === 'sport' || activity === 'work' || activity === 'food' || activity === 'social' || activity === 'party' || activity === 'culture'){
+        if(activity.includes('food') && activity.includes('party') || activity.includes('food') && activity.includes('party') && activity.includes('social') || activity.includes('food')){
+            console.log('park slope');
             latitude = '40.674857';
             longitude = '-73.976870';
+        }
+        else if(activity.includes('tourist') && activity.includes('shopping') && activity.includes('social') && activity.includes('sport') || activity.includes('tourist') && activity.includes('shopping') && activity.includes('social') || activity.includes('tourist') && activity.includes('shopping') || activity.includes('tourist') || activity.includes('sport')){
+            console.log('times square');
+            latitude = '40.759106';
+            longitude = '-73.984273';
+        }
+        else if(activity.includes('work') && activity.includes('food') && activity.includes('arts') || activity.includes('work') && activity.includes('food') || activity.includes('work')){
+            console.log('tribeca');
+            latitude = '40.715248';
+            longitude = '-74.007532';
+        }
+        else{
+            latitude = '40.759106';
+            longitude = '-73.984273';
         }
     }
     
