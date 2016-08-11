@@ -151,19 +151,15 @@
 <script>
 	$(document).ready(function() {
 		$('select').material_select();
+
+		var city = localStorage.getItem('city');
+		
+		$('#city-input').val(city);
+		$('#city-name').html(city);
 	});
 </script>
 <!-- For Pick A Date -->
 <script>
-var city = localStorage.getItem('city');
-console.log('city selected = ', city);
-
-$('#city-input').val(city);
-$('#city-name').html(city);
-
-
-
-
 
 $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month

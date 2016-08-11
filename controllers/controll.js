@@ -53,20 +53,24 @@ router.get('/result', function(req, res, body) {
 
 
 router.post('/listings', function(req, res) {
-    //GET Request Parameters------------------
-
     console.log(req.body);
-    // console.log('in listings');
-    // global parameters
-    
+   
+    //PARAMETERS===================================================
+    //For ALL Searches
     var sleeps = req.body.numOfPeople;
     var max = req.body.budget;
     var city = req.body.city;
+    var start;
+    var end;
 
-
-    //city specific parameters
+    //City Specific
     var longitude;
     var latitude;
+
+    //==============================================================
+    var activity = req.body.myActivity;
+    console.log(activity);
+    //New York
     // if(city === 'New York'){
     //     console.log('city identified, new york');
     //     if(req.body.myActivity === 'food'){
@@ -75,7 +79,13 @@ router.post('/listings', function(req, res) {
     //     }
     // }
     
+    //Paris
 
+
+    //London
+
+    //API CALL=====================================================
+    //Create Search Request
     var search = {
         method: 'GET',
         url: 'https://ws.homeaway.com/public/search',
@@ -96,21 +106,19 @@ router.post('/listings', function(req, res) {
             authorization: 'Bearer NTZlNjYzZGYtNTYxNS00NWViLWFjZTQtOWY0ZDVlMmMwZjIz'
         }
     };
-    // Request---------------------------------
+    //Send Request
     // console.log('search = ', search);
     request(search, function(error, response, body) {
         if (error) throw new Error(error);
 
         var results = JSON.parse(body);
         var resultArray = [];
-        // console.log(results);
 
         var numOfResults = results.entries.length;
         // console.log('# results = ', numOfResults)
-
         if (numOfResults === 0) {
-            // alert("No Results Match Those Parameters.  Please search again.");
-            // res.redirect('/form');
+            alert("No Results Match Those Parameters.  Please search again.");
+            res.redirect('/form');
         } 
         else {
             for (i = 0; i < numOfResults; i++) {
@@ -123,10 +131,10 @@ router.post('/listings', function(req, res) {
                 resultArray.push(resultObject);
             }
             if(numOfResults < 5){
-                var display = "<div class='result-display'><h2 class='headline'>" + resultArray[0].headline + "</h2>" + "<br>" +
+                var display = "<html><head><link rel='stylesheet' type='text/css' href='/assets/css/style.css'></head><body><div class='result-display'><h2 class='headline'>" + resultArray[0].headline + "</h2>" + "<br>" +
                     "<img class='home-photo' src=" + resultArray[0].image + ">" + "<br>" +
                     "<p class='result-description'>" + resultArray[0].description + "</p><br>" +
-                    "<a class='result-link' href='" + resultArray[0].listing + "'>" + "View Listing" + "</a></div>";
+                    "<a class='result-link' href='" + resultArray[0].listing + "'>" + "View Listing" + "</a></div></body></html>";
             }
             else {
                 var display = "<html><head><link rel='stylesheet' type='text/css' href='/assets/css/style.css'></head><body><div class='result-display'><h2 class='headline'>" + resultArray[0].headline + "</h2>" + "<br>" +
